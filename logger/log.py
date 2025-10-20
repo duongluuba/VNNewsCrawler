@@ -2,8 +2,18 @@ import yaml
 import logging 
 import logging.config 
 from pathlib import Path
+import os
+import sys
 
-from utils.utils import create_dir
+# Add parent directory to path to find utils module
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+
+try:
+    from utils.utils import create_dir
+except ImportError:
+    # Fallback function if utils module is not available
+    def create_dir(path):
+        os.makedirs(path, exist_ok=True)
 
 
 def setup_logging(log_dir, config_fpath="logger_config.yml"):

@@ -1,3 +1,7 @@
+import os, sys
+# ensure this package directory is searched first so local modules are found
+sys.path.insert(0, os.path.dirname(__file__))
+
 import argparse
 
 from logger import log
